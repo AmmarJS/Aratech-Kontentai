@@ -26,5 +26,6 @@
                 "Aratech\\Kontentai\\KontentServiceProvider"
             ]
         }
-    }
+    },
+    "minimum-stability": "dev"
 }
