@@ -1,0 +1,86 @@
+<?php
+
+use Kontent\Ai\Delivery\DeliveryClient;
+use Kontent\Ai\Delivery\QueryParams;
+use Illuminate\Support\Collection;
+
+class Kontentai {
+    private static $client;
+    private static $app;
+    public static $query;
+
+    /**
+     * create a kontent ai client, if created, returns the previously created one.
+     *
+     * @return Kontentai collection of Kontent ai items
+     */
+    public static function createClient() : Kontentai {
+        try {
+            // Initializes an instance of the DeliveryClient client
+            if(is_null(static::$app)) {
+                $client = new DeliveryClient(env("KONTENT_AI_KEY"));
+            } else {
+                $client = static::$client;
+                return static::$app;
+            }
+        } catch (\Throwable $e) {
+            throw new \Exception($e->getMessage());
+        }
+        static::$client = $client;
+        static::$app = new Kontentai();
+        static::$query = new QueryParams();
+        return static::$app;
+    }
+
+    /**
+     * get items from kontent ai using item name
+     *
+     * @param string $item Kontent ai item name
+     * 
+     * @return object Kontent ai item
+     */
+    public function __get(string $item) : object {
+        $res = static::$client->getItem($item);
+        if(is_null($res)) {
+            throw new \InvalidArgumentException("Item not found: $item");
+        }
+        return $res;
+    }
+
+    /**
+     * chain a method call to the kontent ai client
+     *
+     * @param string $method method name
+     * 
+     * @param array $arguments method arguments
+     * @return Kontentai the app instance
+     */
+    public function __call(string $method, array $arguments) : Kontentai {
+        if(method_exists(Query::class, $method)) {
+            [$key, $val] = Query::$method($arguments);
+            static::$query->data[$key] = $val; 
+            return static::$app;
+        } elseif(method_exists(QueryParams::class, $method)) {
+            static::$query->$method(...$arguments);
+            return static::$app;
+        } else {
+            throw new \BadMethodCallException("Method $method() does not exist");
+        }
+    }
+
+    /**
+     * fetch the items after filtering with query
+     *
+     * 
+     * @return Collection $items Kontent ai collection of Kontent ai items
+     */
+    public function fetch() : Collection {
+        if(is_null(static::$query)) {
+            return new Collection(static::$client->getItems());
+        } else {
+            $collection = new Collection(static::$client->getItems(static::$query));
+            static::$query = new QueryParams();
+            return $collection;
+        }
+    }
+}
