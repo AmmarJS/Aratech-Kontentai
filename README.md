@@ -25,7 +25,7 @@ or adjust your `composer.json` file:
 ```
 
 ## Create a Kontent-ai Client
-Creating a `Kontent.ai Client` is simple and easy, start by adding a key named `KONTENT_AI_KEY` to your .env file:
+Creating a `Kontent.ai Client` is simple and easy, start by adding your Kontent.ai project key to your .env file, and name it `KONTENT_AI_KEY`:
 ```php
 KONTENT_AI_KEY = "8320c77c-2ed5-0020-97a8-2a6c956379d5"
 ```
