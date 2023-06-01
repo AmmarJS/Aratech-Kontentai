@@ -7,7 +7,7 @@ use Illuminate\Support\Collection;
 class Kontentai {
     private static $client;
     private static $app;
-    public static $query;
+    private static $query;
 
     /**
      * create a kontent ai client, if created, returns the previously created one.
@@ -17,12 +17,10 @@ class Kontentai {
     public static function createClient() : Kontentai {
         try {
             // Initializes an instance of the DeliveryClient client
-            if(is_null(static::$app)) {
+            if(is_null(static::$app))
                 $client = new DeliveryClient(env("KONTENT_AI_KEY"));
-            } else {
-                $client = static::$client;
+            else
                 return static::$app;
-            }
         } catch (\Throwable $e) {
             throw new \Exception($e->getMessage());
         }
@@ -82,5 +80,25 @@ class Kontentai {
             static::$query = new QueryParams();
             return $collection;
         }
+    }
+
+    /**
+     * returns the Kontent.ai delivery client instance
+     *
+     * 
+     * @return DeliveryClient
+     */
+    public function getClient() : DeliveryClient {
+        return static::$client;
+    }
+
+    /**
+     * clears the chain query to start a new one
+     *
+     * 
+     * @return void
+     */
+    public function clearQuery() : void {
+        static::$query = new QueryParams();
     }
 }

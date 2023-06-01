@@ -2,6 +2,7 @@
     "name": "aratech/kontentai",
     "description": "A lightweight package for wrapping kontentai PHP SDK",
     "license": "MIT",
+    "version": "0.1",
     "authors": [
         {
             "name": "AmmarJS"
