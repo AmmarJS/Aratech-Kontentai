@@ -19,7 +19,7 @@ or adjust your `composer.json` file:
 ```sh
 {
     "require": {
-        "aratech/kontentai": "dev-main"
+        "aratech/kontentai": "^0.1.0"
     }
 }
 ```
