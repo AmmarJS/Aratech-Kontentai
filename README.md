@@ -10,7 +10,7 @@ Developed By [Ammar Jlies](https://github.com/AmmarJS), [Jimmy Jradeh](https://g
 You must have a Laravel Application before you can install this package.
 After installing your laravel application you can run:
 
-```sh
+```php
 composer require aratech/kontentai
 ```
 
