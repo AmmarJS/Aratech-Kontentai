@@ -66,7 +66,7 @@ You can also use the Methods that are already built in the DeliveryClient provid
 $results = $app->language('es-ES')->where("name", "article")->orderAsc('elements.product_name')->limit(10)->fetch();
 ```
 
-By default, the chained methods will be cleared after you call he fetch() method, but, you can also clear them manually by calling the clearQuery() method on the app object:
+By default, the chained methods will be cleared after you call the fetch() method, but, you can also clear them manually by calling the clearQuery() method on the app object:
 ```php
 $results = $app->clearQuery();
 ```
