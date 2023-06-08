@@ -2,7 +2,6 @@
     "name": "aratech/kontentai",
     "description": "A lightweight package for wrapping kontentai PHP SDK",
     "license": "MIT",
-    "version": "0.2",
     "authors": [
         {
             "name": "AmmarJS"
@@ -14,7 +13,7 @@
     "require": {
         "php": "^7.3|^8.0",
         "kontent-ai/delivery-sdk-php": "^6.0",
-        "laravel/framework": ">=8.75"
+        "laravel/framework": "^8.75|^9.0|^10.0"
     },
     "autoload": {
         "psr-4": {
