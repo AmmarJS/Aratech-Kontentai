@@ -17,7 +17,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Aratech\\Kontentai\\": "src/Kontentai/Kontentai"
+            "Aratech\\Kontentai\\": "src/"
         }
     },
     "extra": {

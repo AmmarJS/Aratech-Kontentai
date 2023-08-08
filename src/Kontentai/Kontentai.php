@@ -1,10 +1,12 @@
 <?php
 
+namespace Aratech\Kontentai;
+
 use Kontent\Ai\Delivery\DeliveryClient;
 use Kontent\Ai\Delivery\QueryParams;
 use Illuminate\Support\Collection;
 
-class Kontentai {
+class Client {
     private static $client;
     private static $app;
     private static $query;
@@ -12,9 +14,9 @@ class Kontentai {
     /**
      * create a kontent ai client, if created, returns the previously created one.
      *
-     * @return Kontentai collection of Kontent ai items
+     * @return Client collection of Kontent ai items
      */
-    public static function createClient() : Kontentai {
+    public static function createClient() : Client {
         try {
             // Initializes an instance of the DeliveryClient client
             if(is_null(static::$app))
@@ -25,7 +27,7 @@ class Kontentai {
             throw new \Exception($e->getMessage());
         }
         static::$client = $client;
-        static::$app = new Kontentai();
+        static::$app = new Client();
         static::$query = new QueryParams();
         return static::$app;
     }
@@ -51,9 +53,9 @@ class Kontentai {
      * @param string $method method name
      * 
      * @param array $arguments method arguments
-     * @return Kontentai the app instance
+     * @return Client the app instance
      */
-    public function __call(string $method, array $arguments) : Kontentai {
+    public function __call(string $method, array $arguments) : Client {
         if(method_exists(Query::class, $method)) {
             [$key, $val] = Query::$method($arguments);
             static::$query->data[$key] = $val; 
