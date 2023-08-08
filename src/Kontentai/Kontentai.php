@@ -42,7 +42,7 @@ class Kontentai {
         if(is_null($res)) {
             throw new \InvalidArgumentException("Item not found: $item");
         }
-        return $res;
+        return $res; 
     }
 
     /**
