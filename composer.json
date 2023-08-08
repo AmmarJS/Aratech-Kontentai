@@ -13,7 +13,7 @@
     "require": {
         "php": "^7.3|^8.0",
         "kontent-ai/delivery-sdk-php": "^6.0",
-        "laravel/framework": "^8.75|^9.0|^10.0"
+        "laravel/framework": ">=8.75"
     },
     "autoload": {
         "psr-4": {
