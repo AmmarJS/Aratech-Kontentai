@@ -11,8 +11,8 @@ class Query {
      * 
      * @return array returns an array which gets passed eventually to query params
      */
-    public function where(array $arguments) : array {
-        if(isset($arguments[2])) {
+    public static function where(array $arguments) : array {
+        if(isset($arguments[2]) || !isset($arguments[0]) || !isset($arguments[1])) {
             throw new \ArgumentCountError("Wrong number of parameters, expected 2");
         }
         $column = $arguments[0];
@@ -27,8 +27,8 @@ class Query {
      *
      * @return array returns an array which gets passed eventually to query params
      */
-    public function find(array $argument) : array {
-        if(isset($argument[1])) {
+    public static function find(array $argument) : array {
+        if(isset($argument[1]) || !isset($argument)) {
             throw new \ArgumentCountError("Wrong number of parameters, expected 1");
         }
         $value = $argument;
