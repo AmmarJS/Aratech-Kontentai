@@ -23,7 +23,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "src/KontentServiceProvider.php"
+                "Aratech\\Kontentai\\KontentServiceProvider"
             ]
         }
     },
