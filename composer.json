@@ -23,7 +23,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "src/KontentServiceProvider"
+                "src/KontentServiceProvider.php"
             ]
         }
     },
