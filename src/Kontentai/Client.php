@@ -1,7 +1,5 @@
 <?php
 
-namespace Aratech\Kontentai;
-
 use Kontent\Ai\Delivery\DeliveryClient;
 use Kontent\Ai\Delivery\QueryParams;
 use Illuminate\Support\Collection;
