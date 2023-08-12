@@ -14,15 +14,15 @@ class Client {
     /**
      * create a kontent ai client, if created, returns the previously created one.
      *
-     * @param string $envKey the name of the key in the env
+     * @param bool $isPreview determines whether the client is preview
      * 
      * @return Client collection of Kontent ai items
      */
-    public static function createClient(String $envKey) : Client {
+    public static function createClient(bool $isPreview) : Client {
         try {
             // Initializes an instance of the DeliveryClient client
             if(is_null(static::$app))
-                $client = new DeliveryClient(env($envKey));
+                $client = new DeliveryClient(env("KONTENT_AI_KEY"), $isPreview ? env("KONTENT_AI_PREVIEW_KEY") : null);
             else
                 return static::$app;
         } catch (\Throwable $e) {
