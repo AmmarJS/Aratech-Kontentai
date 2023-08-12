@@ -18,7 +18,7 @@ class Client {
      * 
      * @return Client collection of Kontent ai items
      */
-    public static function createClient(bool $isPreview) : Client {
+    public static function createClient(bool $isPreview = false) : Client {
         try {
             // Initializes an instance of the DeliveryClient client
             if(is_null(static::$app))
