@@ -42,7 +42,7 @@ class Client {
      * @return object Kontent ai item
      */
     public function __get(string $item) : object {
-        $res = static::$client->getItem($item);
+        $res = static::$client->getItem($item, (new QueryParams())->depth(9999));
         if(is_null($res)) {
             throw new \InvalidArgumentException("Item not found: $item");
         }
