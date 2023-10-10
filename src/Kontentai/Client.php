@@ -58,7 +58,7 @@ class Client {
      * 
      * @return object Kontent ai item
      */
-    public function getLocalItem(string $codename, string $lang) : object
+    public function getLocaleItem(string $codename, string $lang) : object
     {
         $res = static::$client->getItem($codename, (new QueryParams())->language($lang)->depth(9999));
         if (is_null($res)) throw new \InvalidArgumentException("Item not found: $codename");
