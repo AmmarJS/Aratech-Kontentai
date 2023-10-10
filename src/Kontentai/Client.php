@@ -43,10 +43,27 @@ class Client {
      */
     public function __get(string $item) : object {
         $res = static::$client->getItem($item, (new QueryParams())->depth(9999));
-        if(is_null($res)) {
-            throw new \InvalidArgumentException("Item not found: $item");
-        }
+        if(is_null($res)) throw new \InvalidArgumentException("Item not found: $item");
+
         return $res; 
+    }
+
+    /**
+     * get item from kontent ai using item's codename and language variant codename
+     *
+     * @param string $codename Kontent ai codename
+     * 
+     * @param string $lang Language variant codename
+     * 
+     * 
+     * @return object Kontent ai item
+     */
+    public function getLocalItem(string $codename, string $lang) : object
+    {
+        $res = static::$client->getItem($codename, (new QueryParams())->language($lang)->depth(9999));
+        if (is_null($res)) throw new \InvalidArgumentException("Item not found: $codename");
+
+        return $res;   
     }
 
     /**
